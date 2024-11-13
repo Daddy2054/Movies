@@ -13,7 +13,7 @@ import SwiftData
 @Model
 final class Movie{
 var title: String
-  var year: Int?
+  var year: Int
     
     
     init(title: String, year: Int){

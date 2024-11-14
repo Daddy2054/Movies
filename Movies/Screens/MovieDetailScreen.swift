@@ -52,7 +52,7 @@ struct MovieDetailScreen: View {
                         }
                     }
                     else {
-                        Text("List of reviews")
+                        ReviewListView(reviews: reviews)
                     }
                 }
             }

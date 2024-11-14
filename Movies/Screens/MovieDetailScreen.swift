@@ -43,18 +43,13 @@ struct MovieDetailScreen: View {
                         )
                 }
                 )
-                if let reviews = movie.reviews {
-                    
-                    if reviews.isEmpty  {
-                        ContentUnavailableView
-                        {
-                            Text("No reviews yet")
-                        }
+                if movie.reviews.isEmpty  {
+                    ContentUnavailableView
+                    {
+                        Text("No reviews yet")
                     }
-                    else {
-                        ReviewListView(reviews: reviews)
-                    }
-                }
+                }else {
+                        ReviewListView( movie: movie)}
             }
         }.onAppear{
             title = movie.title

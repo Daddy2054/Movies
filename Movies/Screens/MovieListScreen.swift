@@ -13,7 +13,8 @@ struct MovieListScreen: View {
     
     @Environment(\.modelContext) private var context
     
-    @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
+//    @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
+    @Query(filter:#Predicate<Movie> {$0.title.contains("man")}) private var movies: [Movie]
     @Query(sort: \Actor.name, order: .forward) private var actors: [Actor]
     
     @State private var isAddMoviePresented: Bool = false

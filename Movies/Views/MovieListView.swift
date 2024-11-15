@@ -43,8 +43,13 @@ struct MovieListView: View {
         List {
             ForEach(movies) { movie in
                 NavigationLink(value: movie) {
-                    HStack {
+                    HStack (alignment: .firstTextBaseline
+                            ){
                         Text(movie.title)
+                        Text("Reviews:\(movie.reviewsCount.description)")
+                            .font(.caption)
+                        Text("Actors:\(movie.actorsCount.description)")
+                            .font(.caption)
                         Spacer()
                         Text(movie.year.description)                }
                 }

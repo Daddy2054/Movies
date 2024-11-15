@@ -20,10 +20,16 @@ struct MovieListView: View {
         switch self.filterOption {
         case .title(let movieTitle):
             _movies = Query(filter: #Predicate<Movie> { $0.title.localizedStandardContains(movieTitle) } )
-        
+            
         case .none:
             _movies = Query()
+        case .reviewsCount(let numberOfReviews):
+            _movies = Query(filter: #Predicate<Movie> { $0.reviews.count >= numberOfReviews } )
+        case .actorsCount(let numberOfActors):
+            _movies = Query(filter: #Predicate { $0.actors.count >= numberOfActors })
+       
         }
+        
     }
     
     @Environment(\.modelContext) private var context

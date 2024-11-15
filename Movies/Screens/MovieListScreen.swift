@@ -9,6 +9,15 @@
 import SwiftUI
 import SwiftData
 
+enum Sheets: Identifiable  {
+    case addMovie
+    case addActor
+    
+    case showFilter
+    var id: Int {
+        hashValue
+    }
+}
 struct MovieListScreen: View {
     
     @Environment(\.modelContext) private var context
@@ -17,9 +26,9 @@ struct MovieListScreen: View {
     @Query(filter:#Predicate<Movie> {$0.title.contains("man")}) private var movies: [Movie]
     @Query(sort: \Actor.name, order: .forward) private var actors: [Actor]
     
-    @State private var isAddMoviePresented: Bool = false
-    @State private var isActorPresented: Bool = false
     @State private var actorName: String = ""
+    
+    @State private var activeSheet: Sheets?
     
     private func saveActor()    {
         let actor = Actor(name: actorName)
@@ -37,35 +46,36 @@ struct MovieListScreen: View {
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Add Actor") {
-                        isActorPresented = true
+                        activeSheet = .addActor
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                 Button("Add Movie") {
-                    isAddMoviePresented = true
+                    activeSheet = .addMovie
                 }
             }
         })
-        .sheet(isPresented: $isAddMoviePresented, content: {
-            NavigationStack {
-                AddMovieScreen()
-            }
-        })
-        .sheet(isPresented: $isActorPresented, content: {
-//            NavigationStack {
-//                AddMovieScreen()
-//            }
-            Text("Add Actor").font(.largeTitle)
- 
-            TextField("Actor Name", text: $actorName)
-                .textFieldStyle(.roundedBorder)
-                .presentationDetents([.fraction(0.25)])
-                .padding()
-            Button("Save") {
-                isActorPresented = false
-                saveActor()
-            }
-        })
+            .sheet(item: $activeSheet, content: {activeSheet in
+                switch activeSheet {
+                case .addMovie:
+                    NavigationStack {
+                        AddMovieScreen()
+                    }
+                case .addActor:
+                    Text("Add Actor").font(.largeTitle)
+                    
+                    TextField("Actor Name", text: $actorName)
+                        .textFieldStyle(.roundedBorder)
+                        .presentationDetents([.fraction(0.25)])
+                        .padding()
+                    Button("Save") {
+                        saveActor()
+                        self.activeSheet = nil
+                    }
+                case .showFilter:
+                    Text("Show Filter Screen")
+                }
+            })
     }
 }
 

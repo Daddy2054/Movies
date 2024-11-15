@@ -16,19 +16,20 @@ struct FilterSelectionScreen: View {
     
     @Environment(\.dismiss) private var dismiss
     @State  private var movieTitle: String = ""
-@Binding var filterOption: FilterOption
+    @Binding var filterOption: FilterOption
     
     var body: some View {
         Form {
             Section("Filter by title") {
                 TextField("Movie title", text: $movieTitle)
+                    .autocapitalization(.none)
                 Button("Search") {
                     filterOption = .title(movieTitle
                     )
                     dismiss()
+                }
             }
         }
-    }
         
     }
 }

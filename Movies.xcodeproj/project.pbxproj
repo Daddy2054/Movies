@@ -10,9 +10,33 @@
 		0F1088152CE401B3005CAD17 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0FEEA0B52CE7EE8700E851F2 /* Exceptions for "Movies" folder in "Movies" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Readme.md,
+			);
+			target = 0F1088142CE401B3005CAD17 /* Movies */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		0FEEA0B62CE7EE8700E851F2 /* Exceptions for "Movies" folder in "Compile Sources" phase from "Movies" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 0F1088112CE401B3005CAD17 /* Sources */;
+			membershipExceptions = (
+				Readme.md,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0F1088172CE401B3005CAD17 /* Movies */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0FEEA0B52CE7EE8700E851F2 /* Exceptions for "Movies" folder in "Movies" target */,
+				0FEEA0B62CE7EE8700E851F2 /* Exceptions for "Movies" folder in "Compile Sources" phase from "Movies" target */,
+			);
 			path = Movies;
 			sourceTree = "<group>";
 		};

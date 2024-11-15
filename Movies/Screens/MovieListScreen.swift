@@ -89,6 +89,6 @@ struct MovieListScreen: View {
 #Preview {
     NavigationStack {
         MovieListScreen()
-            .modelContainer(for: [Movie.self, Review.self, Actor.self])
+            .modelContainer(for: [Movie.self, Review.self, Actor.self], inMemory: true)
     }
 }
